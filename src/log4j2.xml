@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+<!-- 定义日志的根目录 ${web:rootDir} ${sys:catalina.home} -->
+    <property name="LOG_HOME" value="${catalina.base}/logs/" />
+    <!-- 定义日志文件名称 -->
+    <property name="appName" value="jee2018"></property>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n" />
+		</Console>
+		
+		<File name="file" fileName="${sys:catalina.home}/logs/jee2018.log"
+			append="true">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n" />
+		</File>
+		<File name="error" fileName="error.log">
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout
+				pattern="d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n" />
+		</File>
+		<RollingFile name="rollingFile" fileName="${sys:catalina.home}/"   
+                 filePattern="logs/$${date:yyyy-MM}/jee2018-%d{MM-dd-yyyy}-%i.log.gz">   
+      <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>   
+      <SizeBasedTriggeringPolicy size="20 MB" />   
+    </RollingFile>
+	</Appenders>
+	<Loggers>
+		<logger name="controller" level="debug" additivity="false">
+			<appender-ref ref="console" />
+			<appenderRef ref="file" />
+		</logger>
+		<logger name="com.opensymphony.xwork2" level="debug"/>		
+		<Root level="info">
+			<appenderRef ref="console" />
+			<appenderRef ref="file" />
+		</Root>
+	</Loggers>
+</Configuration>

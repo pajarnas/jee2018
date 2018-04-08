@@ -1,0 +1,7 @@
+402  [main] INFO  demo.LogDemo - log info
+402  [main] WARN  demo.LogDemo - log warn
+402  [main] ERROR demo.LogDemo - log error
+442  [main] DEBUG demo.LogDemo - log debug
+458  [main] INFO  demo.LogDemo - log info
+458  [main] WARN  demo.LogDemo - log warn
+458  [main] ERROR demo.LogDemo - log error

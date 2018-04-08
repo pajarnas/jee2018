@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="jee2018" basedir="." default="zip">   
+
+    <tstamp/>   
+    <target name="zip">
+      <zip destfile="../${ant.project.name}-${DSTAMP}.zip/"
+           basedir=".."
+           excludes="**/*.class,**/*.jar,**/*.bak"
+           includes="${ant.project.name}/**"
+      />
+    </target>    
+</project>

@@ -46,6 +46,7 @@ public class CheckLogin extends ActionSupport {
   @Override
   public String execute() {
     logger.error("{}",username);
+    logger.warn("username is {},pass is {} ",username,pass);
     if (username.equalsIgnoreCase("admin")) {
       Map session = ActionContext.getContext().getSession();
       session.put("username", username);

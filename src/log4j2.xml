@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
-<!-- 定义日志的根目录 ${web:rootDir} ${sys:catalina.home} -->
-    <property name="LOG_HOME" value="${catalina.base}/logs/" />
-    <!-- 定义日志文件名称 -->
-    <property name="appName" value="jee2018"></property>
+<configuration status="warn">
+	<properties>
+		<property name="log.home" value="${sys:catalina.home}/logs/" />
+		<property name="app.name">jee2018</property>		
+		<property name="log.file.name" value="${log.home}/${app.name}.log" />
+		<property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n</property>
+	</properties>
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout
-				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n" />
+				pattern="${pattern}" />
 		</Console>
-		
-		<File name="file" fileName="${sys:catalina.home}/logs/jee2018.log"
-			append="true">
+		<File name="file" fileName="${log.file.name}" append="true">
 			<PatternLayout
-				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n" />
+				pattern="${pattern}" />
 		</File>
-		<File name="error" fileName="error.log">
+		<File name="error" fileName="${log.home}/jee2018-error.log">
 			<ThresholdFilter level="error" onMatch="ACCEPT"
 				onMismatch="DENY" />
 			<PatternLayout
-				pattern="d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n" />
+				pattern="${pattern}" />
 		</File>
-		<RollingFile name="rollingFile" fileName="${sys:catalina.home}/"   
-                 filePattern="logs/$${date:yyyy-MM}/jee2018-%d{MM-dd-yyyy}-%i.log.gz">   
-      <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>   
-      <SizeBasedTriggeringPolicy size="20 MB" />   
-    </RollingFile>
+		<RollingFile name="rollingFile" fileName="${log.home}/${app.name}.txt"
+			filePattern="${log.home}/${app.name}-%d{yyyyMMdd}-%i.txt">							
+			<PatternLayout
+				pattern="${pattern}" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="20KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<logger name="controller" level="debug" additivity="false">
+		<logger name="controller" level="debug" additivity="true">
 			<appender-ref ref="console" />
 			<appenderRef ref="file" />
+			<appenderRef ref="error" />
 		</logger>
-		<logger name="com.opensymphony.xwork2" level="debug"/>		
+		<logger name="com.opensymphony.xwork2" level="debug" />
 		<Root level="info">
+			<appenderRef ref="rollingFile" />
 			<appenderRef ref="console" />
 			<appenderRef ref="file" />
+			<appenderRef ref="error" />
 		</Root>
 	</Loggers>
-</Configuration>
+</configuration>

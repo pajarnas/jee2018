@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn">
 	<properties>
-		<property name="log.home" value="${sys:catalina.home}/logs/" />
-		<property name="app.name">jee2018</property>		
-		<property name="log.file.name" value="${log.home}/${app.name}.log" />
-		<property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level - %l{36}-%msg%n</property>
+	<!-- ${web:rootDir} ${sys:catalina.home}-->
+		<property name="log.home" value="." />
+		<property name="prj.name">jee2018</property>
+		<property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level-%l{36}-%msg%n</property>
 	</properties>
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
-			<PatternLayout
-				pattern="${pattern}" />
+			<PatternLayout pattern="${pattern}" />
 		</Console>
-		<File name="file" fileName="${log.file.name}" append="true">
-			<PatternLayout
-				pattern="${pattern}" />
+		<File name="file" fileName="${log.home}/${prj.name}.log" append="true">
+			<PatternLayout pattern="${pattern}" />
 		</File>
-		<File name="error" fileName="${log.home}/jee2018-error.log">
+		<File name="error" fileName="${log.home}/${prj.name}-error.log">
 			<ThresholdFilter level="error" onMatch="ACCEPT"
 				onMismatch="DENY" />
-			<PatternLayout
-				pattern="${pattern}" />
+			<PatternLayout pattern="${pattern}" />
 		</File>
-		<RollingFile name="rollingFile" fileName="${log.home}/${app.name}.txt"
-			filePattern="${log.home}/${app.name}-%d{yyyyMMdd}-%i.txt">							
-			<PatternLayout
-				pattern="${pattern}" />
+		<RollingFile name="rollingFile" fileName="${log.home}/${prj.name}.txt"
+			filePattern="${log.home}/${prj.name}-%d{yyyyMMdd}-%i.txt">
+			<PatternLayout pattern="${pattern}" />
 			<Policies>
 				<OnStartupTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="20KB" />
@@ -38,6 +34,7 @@
 			<appenderRef ref="file" />
 			<appenderRef ref="error" />
 		</logger>
+		<logger name="demo" level="trace" />
 		<logger name="com.opensymphony.xwork2" level="debug" />
 		<Root level="info">
 			<appenderRef ref="rollingFile" />

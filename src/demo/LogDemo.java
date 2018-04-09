@@ -9,7 +9,6 @@ public class LogDemo {
     logger.debug("log {}","debug");
     logger.info("log {}","info");
     logger.warn("log {}","warn");
-    logger.error("log {}","error"); 
-    
+    logger.error("log {}","error");   
   }
 }

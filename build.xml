@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="jee2018" basedir="." default="zip">   
-
-    <tstamp/>   
-    <target name="zip">
-      <zip destfile="../${ant.project.name}-${DSTAMP}.zip/"
-           basedir=".."
-           excludes="**/*.class,**/*.jar,**/*.bak"
-           includes="${ant.project.name}/**"
-      />
-    </target>    
+<project name="jee2018" basedir="." default="">
+    <property name="prj.name" value="jee2018"/>
+	<property name="webinf.home" value="WebRoot/WEB-INF"/>	
+	<property name="build.dir" value="${webinf.home}/classes"/>
+	<property name="lib.dir" value="${webinf.home}/lib"/>
+	<property environment="env" />
+	<property file="build.properties" />
+	<path id="cp">
+		<pathelement path="${build.dir}" />
+		<fileset dir="${lib.dir}" />
+	</path>
+	<tstamp>
+	   <format property="date" pattern="MMdd"/>
+	</tstamp>
+	<target name="echo">
+		<echo message="${env.ANT_HOME}" />
+		<echo message="${env.JAVA_HOME}" />
+		<echo message="${ant.project.name}" />
+		<echo message="${DSTAMP}${TSTAMP}" />
+		<echo message="${date}"/>
+	</target>
+	<target name="db-start">
+		<java fork="true" spawn="false" classname="org.hsqldb.server.Server"
+			classpathref="cp" dir="${lib.dir}" />
+	</target>
+	<target name="db-manager">
+		<java fork="true" spawn="true" classname="org.hsqldb.util.DatabaseManagerSwing"
+			classpathref="cp" />
+	</target>
+	<target name="db-shutdown">
+		<sql driver="${db.driver}" url="${db.url}" userid="${db.user}"
+			password="${db.pass}" classpathref="cp" onerror="continue">
+			shutdown
+		</sql>
+	</target>
+	<target name="zip" depends="db-shutdown">
+		<zip destfile="../${prj.name}-${DSTAMP}${TSTAMP}.zip/"
+			basedir=".." excludes="**/*.class,**/*.jar,**/*.bak" includes="${prj.name}/**" />
+	</target>
 </project>

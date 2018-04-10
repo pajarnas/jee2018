@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jee2018" basedir=".">
+	<property name="web.home" value="WebRoot/" />
+	<property name="build.dir" value="${web.home}/WEB-INF/classes" />
+	<property name="lib.dir" value="${web.home}/WEB-INF/lib" />
+	<tstamp/>
+	<path id="cp">
+		<pathelement path="${build.dir}" />
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+	<target name="echo">
+		<echo message="${build.dir}" />
+		<echo message="${TSTAMP}-${DSTAMP}-${TODAY}" />
+	</target>
+
+	<target name="db-start">
+		<java classname="org.hsqldb.server.Server" classpathref="cp"
+			dir="${lib.dir}" fork="true" />
+	</target>
+	<target name="db-manager">
+		<java classname="org.hsqldb.util.DatabaseManagerSwing"
+			classpathref="cp" dir="${lib.dir}"
+			fork="true" />
+	</target>
+	<target name="db-shutdown">
+	   <sql url="jdbc:hsqldb:hsql://localhost" 
+	   driver="org.hsqldb.jdbcDriver" 
+	   userid="sa" password="" classpathref="cp" onerror="continue">
+	   shutdown
+	   </sql>	   
+	</target>
+</project>

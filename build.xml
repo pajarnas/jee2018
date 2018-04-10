@@ -4,6 +4,7 @@
 	<property name="webinf.home" value="WebRoot/WEB-INF"/>	
 	<property name="build.dir" value="${webinf.home}/classes"/>
 	<property name="lib.dir" value="${webinf.home}/lib"/>
+	<property name="zip.name" value="${prj.name}-${DSTAMP}${TSTAMP}.zip"/>
 	<property environment="env" />
 	<property file="build.properties" />
 	<path id="cp">
@@ -30,12 +31,13 @@
 	</target>
 	<target name="db-shutdown">
 		<sql driver="${db.driver}" url="${db.url}" userid="${db.user}"
-			password="${db.pass}" classpathref="cp" onerror="continue">
+			password="${db.pass}" classpathref="cp" onerror="continue"
+			failOnConnectionError="false">
 			shutdown
 		</sql>
 	</target>
-	<target name="zip" depends="db-shutdown">
-		<zip destfile="../${prj.name}-${DSTAMP}${TSTAMP}.zip/"
-			basedir=".." excludes="**/*.class,**/*.jar,**/*.bak" includes="${prj.name}/**" />
+	<target name="zip"  depends="db-shutdown">
+		<zip destfile="../${prj.name}${date}.zip/"
+			basedir=".." excludes="**/WEB-INF/lib/**,**/WEB-INF/classes/**,**/*.bak" includes="${prj.name}/**" />
 	</target>
 </project>

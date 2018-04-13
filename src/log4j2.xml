@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="warn">
+<configuration status="debug">
 	<properties>
 	<!-- ${web:rootDir} ${sys:catalina.home}-->
 		<property name="log.home" value="." />
@@ -35,7 +35,8 @@
 			<appenderRef ref="error" />
 		</logger>
 		<logger name="demo" level="trace" />
-		<logger name="com.opensymphony.xwork2" level="debug" />
+		<logger name="com.hsqldb" level="info" />
+		<logger name="com.opensymphony.xwork2" level="info" />
 		<Root level="info">
 			<appenderRef ref="rollingFile" />
 			<appenderRef ref="console" />

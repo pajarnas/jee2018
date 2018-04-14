@@ -38,6 +38,6 @@
 	</target>
 	<target name="zip"  depends="db-shutdown">
 		<zip destfile="../${prj.name}${date}.zip/"
-			basedir=".." excludes=".git/**,**/WEB-INF/lib/**,**/WEB-INF/classes/**,**/*.bak" includes="${prj.name}/**" />
+			basedir=".." excludes="**/WEB-INF/lib/**,**/WEB-INF/classes/**,**/*.bak" includes="${prj.name}/**" />
 	</target>
 </project>

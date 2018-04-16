@@ -64,5 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="${sub2Default}">/sub访问缺省</a>
     <s:url var="sub2Root" action="root" namespace="/sub" />
     <a href="${sub2Root}">/sub访问/（不可以）</a>
+    <hr width="30%" align="left" style="border:1px solid red">
+    拦截器
+    <a href="myAction">拦截器示例</a>
   </body>
 </html>

@@ -67,6 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr width="30%" align="left" style="border:1px solid red">
     拦截器
     <a href="myAction">拦截器示例</a>
-    <a href="interceptor_input.jsp">通过页面为action设置值</a>    
+    <a href="interceptor_input.jsp">通过页面为action设置值</a> 
+    <s:url var="myAction2Url" action="myAction2" namespace="/sec"/>
+    <a href="${myAction2Url}">拦截器示例（必须登录才能访问）</a>
   </body>
 </html>

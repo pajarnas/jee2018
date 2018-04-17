@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="debug">
+<configuration status="warn">
 	<properties>
 	<!-- ${web:rootDir} ${sys:catalina.home}-->
-		<property name="log.home" value="." />
+		<property name="log.home" value="${sys:catalina.home}/logs" />
 		<property name="prj.name">jee2018</property>
 		<property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level-%l{36}-%msg%n</property>
 	</properties>
@@ -10,10 +10,10 @@
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout pattern="${pattern}" />
 		</Console>
-		<File name="file" fileName="${log.home}/${prj.name}.log" append="true">
+		<File name="file" fileName="${log.home}/${prj.name}.log" append="false">
 			<PatternLayout pattern="${pattern}" />
 		</File>
-		<File name="error" fileName="${log.home}/${prj.name}-error.log">
+		<File name="error" fileName="${log.home}/${prj.name}-error.log" append="false">
 			<ThresholdFilter level="error" onMatch="ACCEPT"
 				onMismatch="DENY" />
 			<PatternLayout pattern="${pattern}" />
@@ -23,7 +23,7 @@
 			<PatternLayout pattern="${pattern}" />
 			<Policies>
 				<OnStartupTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="20KB" />
+				<SizeBasedTriggeringPolicy size="200KB" />
 			</Policies>
 			<DefaultRolloverStrategy max="20" />
 		</RollingFile>
@@ -34,9 +34,11 @@
 			<appenderRef ref="file" />
 			<appenderRef ref="error" />
 		</logger>
-		<logger name="demo" level="trace" />
+		<logger name="demo" level="debug" />
+		<logger name="interceptor" level="debug" /> 
 		<logger name="com.hsqldb" level="info" />
 		<logger name="com.opensymphony.xwork2" level="info" />
+		<logger name="com.apache.struts2" level="info"/>
 		<Root level="info">
 			<appenderRef ref="rollingFile" />
 			<appenderRef ref="console" />

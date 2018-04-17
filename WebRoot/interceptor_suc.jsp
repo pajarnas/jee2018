@@ -3,3 +3,4 @@
 <s:debug/>
 interceptor suc
 date-action:<s:property value="date"/>
+username-action:<s:property value="username"/>

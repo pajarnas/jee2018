@@ -29,7 +29,7 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<logger name="controller" level="debug" additivity="true">
+		<logger name="controller" level="debug" additivity="false">
 			<appender-ref ref="console" />
 			<appenderRef ref="file" />
 			<appenderRef ref="error" />

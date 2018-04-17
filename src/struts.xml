@@ -34,9 +34,10 @@
 		</action>
 		<action name="showLocs" class="controller.ShowLocs">
 		   <result>/loc_list.jsp</result>
-		</action>
+		</action>		
 	</package>
 	<include file="ns/ns.xml"/>
 	<include file="interceptor/interceptor.xml"/>
 	<include file="interceptor/sec/sec.xml"/>
+	<include file="ex.xml"/>
 </struts>

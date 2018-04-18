@@ -1,5 +1,0 @@
-2018-04-11 06:59:31.365 [main] TRACE-demo.LogDemo.main(LogDemo.java:8)-log trace
-2018-04-11 06:59:31.365 [main] DEBUG-demo.LogDemo.main(LogDemo.java:9)-log debug
-2018-04-11 06:59:31.365 [main] INFO -demo.LogDemo.main(LogDemo.java:10)-log info
-2018-04-11 06:59:31.365 [main] WARN -demo.LogDemo.main(LogDemo.java:11)-log warn
-2018-04-11 06:59:31.365 [main] ERROR-demo.LogDemo.main(LogDemo.java:12)-log error

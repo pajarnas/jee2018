@@ -9,6 +9,7 @@
    <s:textfield name="test_double" label="test_double(50,90)"/>
    <s:textfield name="test_required" label="test_required" requiredLabel="true"/>
    <s:textfield name="test_requiredstring" label="test_requiredstring" requiredLabel="true"/>
+   <s:textfield name="test_stringlength" label="test_stringlength(至少三个字符)"/>
    
    <s:submit/>
 </s:form>

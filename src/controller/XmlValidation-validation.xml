@@ -26,4 +26,10 @@
                <message>test_requiredstring必须输入值</message>
         </field-validator>
     </field>
+     <field name="test_stringlength">
+        <field-validator type="stringlength">               
+               <param name="minLength">3</param>
+               <message>至少输入${minLength}个字符</message>
+        </field-validator>
+    </field>
 </validators>

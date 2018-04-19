@@ -19,7 +19,7 @@
 			<PatternLayout pattern="${pattern}" />
 		</File>
 		<RollingFile name="rollingFile" fileName="${log.home}/${prj.name}.txt"
-			filePattern="${log.home}/${prj.name}-%d{yyyyMMdd}-%i.txt">
+			filePattern="${log.home}/${prj.name}-%d{yyyyMMdd}-%i.gz">
 			<PatternLayout pattern="${pattern}" />
 			<Policies>
 				<OnStartupTriggeringPolicy />
@@ -37,7 +37,7 @@
 		<logger name="demo" level="debug" />
 		<logger name="interceptor" level="debug" /> 
 		<logger name="com.hsqldb" level="info" />
-		<logger name="com.opensymphony.xwork2" level="info" />
+		<logger name="com.opensymphony.xwork2" level="info"/>
 		<logger name="com.apache.struts2" level="info"/>
 		<Root level="info">
 			<appenderRef ref="rollingFile" />

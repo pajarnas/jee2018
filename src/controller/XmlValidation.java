@@ -7,6 +7,7 @@ public class XmlValidation extends ActionSupport {
   double test_double;
   String test_required;
   String test_requiredstring;
+  String test_stringlength;
 
   public int getTest_int() {
     return test_int;
@@ -38,6 +39,14 @@ public class XmlValidation extends ActionSupport {
 
   public void setTest_requiredstring(String test_requiredstring) {
     this.test_requiredstring = test_requiredstring;
+  }
+
+  public String getTest_stringlength() {
+    return test_stringlength;
+  }
+
+  public void setTest_stringlength(String test_stringlength) {
+    this.test_stringlength = test_stringlength;
   }
   
 }

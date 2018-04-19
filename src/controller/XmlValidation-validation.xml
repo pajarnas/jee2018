@@ -6,30 +6,38 @@
 		<field-validator type="int">
 			<param name="min">20</param>
 			<param name="max">50</param>
-			<message key="test_int.outof.range"/>
-		</field-validator>		
+			<message key="test_int.outof.range" />
+		</field-validator>
 	</field>
 	<field name="test_double">
-        <field-validator type="double">
-            <param name="minExclusive">50</param>
-            <param name="maxExclusive">90</param>
-            <message>值必须在(${minExclusive}, ${maxExclusive})区间</message>
-        </field-validator>
-    </field>
-    <field name="test_required">
-        <field-validator type="required">
-               <message>test_required必须输入值</message>
-        </field-validator>
-    </field>
-    <field name="test_requiredstring">
-        <field-validator type="requiredstring">
-               <message>test_requiredstring必须输入值</message>
-        </field-validator>
-    </field>
-     <field name="test_stringlength">
-        <field-validator type="stringlength">               
-               <param name="minLength">3</param>
-               <message>至少输入${minLength}个字符</message>
-        </field-validator>
-    </field>
+		<field-validator type="double">
+			<param name="minExclusive">50</param>
+			<param name="maxExclusive">90</param>
+			<message>值必须在(${minExclusive}, ${maxExclusive})区间</message>
+		</field-validator>
+	</field>
+	<field name="test_required">
+		<field-validator type="required">
+			<message>test_required必须输入值</message>
+		</field-validator>
+	</field>
+	<field name="test_requiredstring">
+		<field-validator type="requiredstring">
+			<message>test_requiredstring必须输入值</message>
+		</field-validator>
+	</field>
+	<field name="test_stringlength">
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<message>至少输入${minLength}个字符</message>
+		</field-validator>
+	</field>
+	<field name="email">
+		<field-validator type="requiredstring">
+			<message>必须输入值</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>不是有效的email地址</message>
+		</field-validator>
+	</field>
 </validators>

@@ -8,6 +8,7 @@ public class XmlValidation extends ActionSupport {
   String test_required;
   String test_requiredstring;
   String test_stringlength;
+  String email;
 
   public int getTest_int() {
     return test_int;
@@ -47,6 +48,14 @@ public class XmlValidation extends ActionSupport {
 
   public void setTest_stringlength(String test_stringlength) {
     this.test_stringlength = test_stringlength;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
   
 }

@@ -73,6 +73,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr width="30%" align="left" style="border:1px solid red">
     异常处理演示：
     <a href="exDemo">异常处理演示</a>
-    
+    <hr width="30%" align="left" style="border:1px solid red">
+    xml校验
+    <a href="validation.jsp">xml校验</a>
   </body>
 </html>

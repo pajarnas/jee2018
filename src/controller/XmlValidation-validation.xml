@@ -7,6 +7,13 @@
 			<param name="min">20</param>
 			<param name="max">50</param>
 			<message key="test_int.outof.range"/>
-		</field-validator>
+		</field-validator>		
 	</field>
+	<field name="test_double">
+        <field-validator type="double">
+            <param name="minExclusive">50</param>
+            <param name="maxExclusive">90</param>
+            <message>值必须在(${minExclusive}, ${maxExclusive})区间</message>
+        </field-validator>
+    </field>
 </validators>

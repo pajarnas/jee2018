@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Date;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class XmlValidation extends ActionSupport {
@@ -9,6 +11,7 @@ public class XmlValidation extends ActionSupport {
   String test_requiredstring;
   String test_stringlength;
   String email;
+  Date date;
 
   public int getTest_int() {
     return test_int;
@@ -56,6 +59,14 @@ public class XmlValidation extends ActionSupport {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
   }
   
 }

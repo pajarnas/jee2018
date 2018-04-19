@@ -40,4 +40,12 @@
 			<message>不是有效的email地址</message>
 		</field-validator>
 	</field>
+	<field name="date">
+		<field-validator type="required">
+			<message>必须输入值</message>
+		</field-validator>
+		<field-validator type="date">
+			<message>不是有效的日期</message>
+		</field-validator>
+	</field>
 </validators>

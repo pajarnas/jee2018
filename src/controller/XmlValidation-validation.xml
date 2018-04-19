@@ -47,5 +47,16 @@
 		<field-validator type="date">
 			<message>不是有效的日期</message>
 		</field-validator>
+		<field-validator type="date">
+			<param name="min">2010-1-1</param>
+			<param name="max">2025-1-1</param>
+			<!-- 
+			<param name="parse">true</param> 
+			<param name="minExpression">${minDate}</param> 
+			<param name="maxExpression">${maxDate}</param> 
+				-->
+			<message>必须在 ${getText('format.date',{min})}
+				and${getText('format.date',{max})}之间</message>
+		</field-validator>
 	</field>
 </validators>

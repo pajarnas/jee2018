@@ -5,6 +5,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class XmlValidation extends ActionSupport {
   int test_int;
   double test_double;
+  String test_required;
+  String test_requiredstring;
 
   public int getTest_int() {
     return test_int;
@@ -20,6 +22,22 @@ public class XmlValidation extends ActionSupport {
 
   public void setTest_double(double test_double) {
     this.test_double = test_double;
+  }
+
+  public String getTest_required() {
+    return test_required;
+  }
+
+  public void setTest_required(String test_required) {
+    this.test_required = test_required;
+  }
+
+  public String getTest_requiredstring() {
+    return test_requiredstring;
+  }
+
+  public void setTest_requiredstring(String test_requiredstring) {
+    this.test_requiredstring = test_requiredstring;
   }
   
 }

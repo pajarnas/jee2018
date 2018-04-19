@@ -16,4 +16,14 @@
             <message>值必须在(${minExclusive}, ${maxExclusive})区间</message>
         </field-validator>
     </field>
+    <field name="test_required">
+        <field-validator type="required">
+               <message>test_required必须输入值</message>
+        </field-validator>
+    </field>
+    <field name="test_requiredstring">
+        <field-validator type="requiredstring">
+               <message>test_requiredstring必须输入值</message>
+        </field-validator>
+    </field>
 </validators>

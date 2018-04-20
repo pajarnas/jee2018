@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -77,5 +78,12 @@ public class XmlValidation extends ActionSupport {
   public void setPass(String pass) {
     this.pass = pass;
   }
+  public Date getMinDate(){
+    return new GregorianCalendar(2010,0,1).getTime();
+  }
+  public Date getMaxDate(){
+    return new GregorianCalendar(2020,0,1).getTime();
+  }
+  
   
 }

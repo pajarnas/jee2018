@@ -12,6 +12,7 @@ public class XmlValidation extends ActionSupport {
   String test_stringlength;
   String email;
   Date date;
+  String pass;
 
   public int getTest_int() {
     return test_int;
@@ -67,6 +68,14 @@ public class XmlValidation extends ActionSupport {
 
   public void setDate(Date date) {
     this.date = date;
+  }
+
+  public String getPass() {
+    return pass;
+  }
+
+  public void setPass(String pass) {
+    this.pass = pass;
   }
   
 }

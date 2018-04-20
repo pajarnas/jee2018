@@ -12,11 +12,8 @@
    <s:textfield name="test_stringlength" label="test_stringlength(至少三个字符)"/>
    <s:textfield name="email" label="email" type="email"/>
    <s:textfield key="date" type="date">
-   <!-- 
-      <s:param name="value">
-      <s:date name="date" format="yyyy-MM-dd"/>
-      </s:param>
-       -->
+   <s:textfield name="pass" label="pass"/>
+  
    </s:textfield>
    <s:submit/>
 </s:form>

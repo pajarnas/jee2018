@@ -59,4 +59,10 @@
 				and${getText('format.date',{max})}之间</message>
 		</field-validator>
 	</field>
+	<field name="pass">
+	   <field-validator type="fieldexpression">  
+	      <param name="expression"><![CDATA[pass.startsWith("123")]]></param>
+	      <message>必须以123开头</message>
+	   </field-validator>
+	</field>
 </validators>

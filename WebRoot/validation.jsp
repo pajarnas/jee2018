@@ -17,6 +17,8 @@
    changeMonth="true" changeYear="true"/>
    <s:textfield name="pass" label="pass"/>
    
+   <s:textfield name="stu.username" label="username"/>
+   
  
    <s:submit/>
 </s:form>

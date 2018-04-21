@@ -5,6 +5,8 @@ import java.util.GregorianCalendar;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import domain.Stu;
+
 public class XmlValidation extends ActionSupport {
   int test_int;
   double test_double;
@@ -14,6 +16,15 @@ public class XmlValidation extends ActionSupport {
   String email;
   Date date;
   String pass;
+  Stu stu;
+
+  public Stu getStu() {
+    return stu;
+  }
+
+  public void setStu(Stu stu) {
+    this.stu = stu;
+  }
 
   public int getTest_int() {
     return test_int;

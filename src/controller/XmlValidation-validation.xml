@@ -47,17 +47,27 @@
 		<field-validator type="date">
 			<message>不是有效的日期</message>
 		</field-validator>
-		<field-validator type="date">			
-			<param name="minExpression">${minDate}</param> 
-			<param name="maxExpression">${maxDate}</param> 			
+		<field-validator type="date">
+			<param name="minExpression">${minDate}</param>
+			<param name="maxExpression">${maxDate}</param>
 			<message>必须在 ${getText('format.date',{min})}
-				and${getText('format.date',{max})}之间</message>
+				and${getText('format.date',{max})}之间
+			</message>
 		</field-validator>
 	</field>
 	<field name="pass">
-	   <field-validator type="fieldexpression">  
-	      <param name="expression"><![CDATA[pass.startsWith("123")]]></param>
-	      <message>必须以123开头</message>
-	   </field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression"><![CDATA[pass.startsWith("123")]]></param>
+			<message>必须以123开头</message>
+		</field-validator>
+	</field>
+	<field name="stu">
+		<field-validator type="required">
+			<message>需要输入stu</message>
+		</field-validator>
+		<field-validator type="visitor">
+			<param name="appendPrefix">true</param>
+			<message>stu.visitor:</message>
+		</field-validator>
 	</field>
 </validators>

@@ -7,19 +7,20 @@
 </head>
 <s:debug/>
 <s:form name="validatonForm" action="xmlValidation" namespace="/validation">
-   <s:textfield name="test_int" label="test_int[20,50]"/>
-   <s:textfield name="test_double" label="test_double(50,90)"/>
+   <s:textfield name="test_int" label="test_int[20,50]" value="23"/>
+   <s:textfield name="test_double" label="test_double(50,90)" value="56"/>
    <s:textfield name="test_required" label="test_required" requiredLabel="true"/>
-   <s:textfield name="test_requiredstring" label="test_requiredstring" requiredLabel="true"/>
-   <s:textfield name="test_stringlength" label="test_stringlength(至少三个字符)"/>
-   <s:textfield name="email" label="email" type="email"/>
-   <sj:datepicker value="today" id="date" name="date" key="date" displayFormat="%{getText('display.date.format')}"
+   <s:textfield name="test_requiredstring" label="test_requiredstring" requiredLabel="true" value="test"/>
+   <s:textfield name="test_stringlength" label="test_stringlength(至少三个字符)" value="test"/>
+   <s:textfield name="email" label="email" type="email" value="cs_jsp@126.com"/>
+   <sj:datepicker value="today" id="date" name="date" key="date" displayFormat="%{getText('format.date.input')}"
    changeMonth="true" changeYear="true"/>
    <s:textfield name="pass" label="pass"/>
    
-  
+ 
    <s:submit/>
 </s:form>
+
  date-action:<s:date name="date"/>
  <br>
  request.loc:<%=request.getLocale()%><br>

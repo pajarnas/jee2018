@@ -8,6 +8,7 @@
 <s:debug/>
 <s:form name="validatonForm" action="xmlValidation" namespace="/validation">
    <s:textfield name="test_int" label="test_int[20,50]" value="23"/>
+   <s:textfield name="test_int_fieldexpression" label="test_int_fieldexpression(20,50)"/>
    <s:textfield name="test_double" label="test_double(50,90)" value="56"/>
    <s:textfield name="test_required" label="test_required" requiredLabel="true"/>
    <s:textfield name="test_requiredstring" label="test_requiredstring" requiredLabel="true" value="test"/>
@@ -16,6 +17,7 @@
    <sj:datepicker value="today" id="date" name="date" key="date" displayFormat="%{getText('format.date.input')}"
    changeMonth="true" changeYear="true"/>
    <s:textfield name="pass" label="pass"/>
+   <s:textfield name="repass" label="repass"/>
    
    <s:textfield name="stu.username" label="username"/>
    

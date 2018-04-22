@@ -16,7 +16,9 @@ public class XmlValidation extends ActionSupport {
   String email;
   Date date;
   String pass;
+  String repass;
   Stu stu;
+  int test_int_fieldexpression;
 
   public Stu getStu() {
     return stu;
@@ -94,6 +96,22 @@ public class XmlValidation extends ActionSupport {
   }
   public Date getMaxDate(){
     return new GregorianCalendar(2020,0,1).getTime();
+  }
+
+  public int getTest_int_fieldexpression() {
+    return test_int_fieldexpression;
+  }
+
+  public void setTest_int_fieldexpression(int test_int_fieldexpression) {
+    this.test_int_fieldexpression = test_int_fieldexpression;
+  }
+
+  public String getRepass() {
+    return repass;
+  }
+
+  public void setRepass(String repass) {
+    this.repass = repass;
   }
   
   

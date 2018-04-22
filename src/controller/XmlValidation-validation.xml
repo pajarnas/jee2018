@@ -56,8 +56,9 @@
 		</field-validator>
 	</field>
 	<field name="pass">
-		<field-validator type="requiredstring" short-circuit="true">
-			<message>没有输入值</message>
+		<field-validator type="stringlength" short-circuit="true">
+			<param name="minLength">3</param>
+			<message>至少输入${minLength}个字符，现在只有${pass.length()}</message>
 		</field-validator>
 		<field-validator type="fieldexpression">
 			<param name="expression"><![CDATA[pass.equals(repass)]]></param>

@@ -65,10 +65,7 @@
 			<message>两次输入的密码不一致</message>
 		</field-validator>
 	</field>
-	<field name="stu">
-		<field-validator type="required">
-			<message>需要输入stu</message>
-		</field-validator>
+	<field name="stu">	
 		<field-validator type="visitor">
 			<param name="appendPrefix">true</param>
 			<message>stu.visitor:</message>

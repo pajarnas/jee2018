@@ -76,5 +76,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr width="30%" align="left" style="border:1px solid red">
     xml校验
     <a href="validation.jsp">xml校验</a>
+    <a href="client_side_validation">客户端校验</a>
   </body>
 </html>

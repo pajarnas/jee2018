@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="jee2018" basedir="." default="all-start">
+	<property name="prj.name" value="${ant.project.name}" />
+	<!--比较重要的目录1，下边有各个类库  -->
+	<property name="lib.home" value="J:/kuaipan/develop/projects/lib" />
+	<!--比较重要的目录2，tomcat目录  -->
+	<property name="tomcat.home" value="D:/develop/apache-tomcat-9.0.0.M17" />
+    	
+	<property file="${lib.home}/build.properties" />
+	<property name="deploy.path" value="${tomcat.home}/webapps"/>
+	<!-- jar和war的临时目录 -->
+	<property name="tmp.dir" value="tmp" />
+	<property name="src.dir" value="src" />
+	<property name="web.dir" value="WebRoot" />
+	<property name="web.lib" value="${web.dir}/WEB-INF/lib" />
+	<property name="db.dir" value="${web.lib}" />
+	<property name="build.dir" value="${web.dir}/WEB-INF/classes" />
+	<property name="name" value="${prj.name}" />
+	<tstamp/>
+	<!--
+	<path id="third-lib">
+		<fileset dir="${hsqldb-2.2.9}" includes="**/*.jar" />
+		<fileset dir="${struts2.5.5.log4j.dir}" />
+		<fileset dir="${struts2-jquery-plugin-4.0.2.lib}" />
+	</path>
+	-->
+	<path id="cp">
+		<fileset dir="${web.lib}" />
+		<fileset dir="${tomcat.home}/lib" />
+		<pathelement path="${build.dir}" /> 
+		<!--<path refid="third-lib" />-->
+	</path>
+	<patternset id="zipFile">
+		<exclude name="**/*.java" />
+		<exclude name="**/*.bak" />
+		<exclude name="**/*.class" />
+	</patternset>
+	<target name="init" description="Clean output directories">
+		<delete dir="${build.dir}" failonerror="true" />
+		<mkdir dir="${build.dir}" />
+	</target>
+	<target name="build" depends="init">
+		<javac destdir="${build.dir}" source="1.8" target="1.8" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.dir}" />
+			<classpath refid="cp" />
+		</javac>
+		<copy todir="${build.dir}" overwrite="true">
+			<fileset dir="${src.dir}">
+				<patternset refid="zipFile" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="build-copyJars" depends="build">
+		<description>先编译(build)。然后拷贝所有的第三方jar文件到lib目录下，这个任务调用完后应调用delJars任务，删除这些jar文件</description>
+		<copy todir="${tmp.dir}" includeEmptyDirs="true">
+			<!--<path refid="third-lib" />-->
+		</copy>
+	</target>
+	<target name="tojar" depends="build">
+		<jar destfile="${prj.name}.jar" basedir="${build.dir}" />
+		<antcall target="init" />	
+	</target>
+	<target name="deploy-dir" depends="build">
+		<copy todir="${deploy.path}/${prj.name}" includeEmptyDirs="true" verbose="true">
+			<fileset dir="${web.dir}" />
+		</copy>
+		<!--<copy todir="${deploy.path}/${prj.name}/WEB-INF/lib" includeEmptyDirs="true">
+			<path refid="third-lib" />
+		</copy>	-->
+	</target>
+	<target name="deploy-dir-jar" depends="tojar">
+		<copy todir="${deploy.path}/${prj.name}" includeEmptyDirs="true" verbose="true">
+			<fileset dir="${web.dir}" />
+		</copy>
+		<copy todir="${deploy.path}/${prj.name}/WEB-INF/lib" includeEmptyDirs="true">
+			<!--<path refid="third-lib" />-->
+			<fileset file="${prj.name}.jar" />
+		</copy>		
+	</target>
+	<target name="war" depends="build">		
+		<war destfile="${prj.name}.war" webxml="${web.dir}/WEB-INF/web.xml">
+			<fileset dir="${web.dir}" />
+		</war>		
+	</target>
+	<target name="deploy-war" depends="war">
+		<copy todir="${deploy.path}" preservelastmodified="true">
+			<fileset file="${prj.name}.war"/>				
+		</copy>
+		<antcall target="del-local-war" />
+	</target>
+	<target name="del-local-war">
+		<delete file="${prj.name}.war" />
+	</target>
+	<target name="undeploy" description="Un-Deploy application in local and server">
+		<delete file="${deploy.path}/${prj.name}.war" failonerror="false" />
+		<delete dir="${deploy.path}/${prj.name}" failonerror="false" />
+	</target>
+	<target name="all-start" description="start db, tomcat,deploy,browse" depends="db-start">
+		<antcall target="redeploy-full" />		
+	</target>
+	<target name="all-shutdown" description="stop db, tomcat">
+		<antcall target="server-shutdown" />
+		<antcall target="db-shutdown" />
+	</target>
+	<target name="redeploy-full">
+		<antcall target="server-shutdown" />
+		<antcall target="undeploy" />
+		<antcall target="deploy-dir" />		
+		<antcall target="server-start" />
+		<sleep seconds="10" />
+		<antcall target="browse" />
+	</target>
+	<target name="redeploy-hot" description="keep tomcat running,then stop,redeploy,start web">
+		<antcall target="web-stop" />
+		<antcall target="undeploy" />
+		<antcall target="deploy-dir" />
+		<sleep seconds="10" description="没有这个，web-start会失败，从拷贝到Tomcat到有段时间" />
+		<antcall target="web-start" />
+		<antcall target="browse" />
+	</target>
+	<target name="db-start">
+		<description>使用hsqldb.lib目录存数据,不指定 dir="${db.dir}"</description>
+		<java fork="true" classname="org.hsqldb.Server" dir="${db.dir}" classpathref="cp" clonevm="true" spawn="true" />
+	</target>
+	<target name="db-manager" description="Start HSQLDB manager">
+		<java classname="org.hsqldb.util.DatabaseManagerSwing" fork="true" classpathref="cp" failonerror="true">
+			<arg value="-url" />
+			<arg value="jdbc:hsqldb:hsql://localhost/" />
+			<arg value="-driver" />
+			<arg value="org.hsqldb.jdbcDriver" />
+		</java>
+	</target>
+	<target name="db-shutdown">
+		<echo message="SHUT DOWN DATABASE USING: ${db.driver} ${db.url}" />
+		<sql driver="${db.driver}" url="${db.url}" userid="${db.user}" password="${db.pw}" onerror="continue">
+			<classpath refid="cp" />
+            SHUTDOWN;
+        </sql>
+	</target>
+	<target name="server-start">
+		<exec executable="${tomcat.home}/bin/startup.bat">
+			<env key="CATALINA_HOME" value="${tomcat.home}" />
+		</exec>
+	</target>
+	<target name="server-shutdown">
+		<exec executable="${tomcat.home}/bin/shutdown.bat">
+			<env key="CATALINA_HOME" value="${tomcat.home}" />
+		</exec>
+	</target>
+	<target name="browse">
+		<exec executable="cmd.exe">
+			<arg value="/c" />
+			<arg value="explorer.exe" />
+			<arg value="${tomcat.url}/${prj.name}" />
+		</exec>
+	</target>
+	<!-- 备份 -->
+	 <target name="zip">
+	      <zip destfile="../${prj.name}-${DSTAMP}${TSTAMP}.zip/"
+	           basedir=".."
+	           excludes="**/*.class,**/*.jar,**/*.bak"
+	           includes="${prj.name}/**"
+	      />
+	    </target>
+	<!-- ============================================================== -->
+	<!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
+	<!-- ============================================================== -->
+	<path id="catalina-ant-classpath">
+		<!-- We need the Catalina jars for Tomcat -->
+		<!--  * for other app servers - check the docs -->
+		<fileset dir="${tomcat.lib.dir}">
+			<!--<include name="catalina-ant.jar" />	-->
+		</fileset>
+	</path>
+	<!--
+		<taskdef file="${lib.home}/tomcat-target-def.properties">
+			<classpath refid="catalina-ant-classpath" />
+		</taskdef>
+		-->
+	<import file="${tomcat.home}/bin/catalina-tasks.xml"/>
+	
+	<target name="web-deploy" description="Install application in Tomcat" depends="war">
+		<deploy url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${prj.name}" war="${prj.name}.war" />
+	</target>
+	<target name="web-reload" description="Reload application in Tomcat">
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${prj.name}" />
+	</target>
+	<target name="web-start" description="Start Tomcat application">
+		<start url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${prj.name}" />
+	</target>
+	<target name="web-stop" description="Stop Tomcat application">
+		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${prj.name}" failonerror="false" />
+	</target>
+	<target name="web-undeploy">
+		<undeploy url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${prj.name}" />
+	</target>
+	<target name="web-list" description="List Tomcat applications">
+		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" append="true" alwayslog="true" />
+	</target>
+	<target name="web-sessions" description="List Tomcat applications">
+		<sessions url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${prj.name}" />
+	</target>
+</project>

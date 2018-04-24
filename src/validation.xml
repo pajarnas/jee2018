@@ -8,5 +8,9 @@
 	      <result>/validation_suc.jsp</result>
 	      <result name="input">/validation.jsp</result>
 	   </action>
+	   <action name="clientSideValidation" class="controller.XmlValidation">
+	      <result>/validation_suc.jsp</result>
+	      <result name="input">/validation.jsp</result>
+	   </action>
 	</package>
 </struts>

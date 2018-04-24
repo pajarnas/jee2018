@@ -63,9 +63,9 @@
 		<field-validator type="fieldexpression">
 			<param name="expression"><![CDATA[pass.equals(repass)]]></param>
 			<message>两次输入的密码不一致</message>
-		</field-validator>		
+		</field-validator>
 	</field>
-	<field name="stu">	
+	<field name="stu">
 		<field-validator type="visitor">
 			<param name="appendPrefix">true</param>
 			<message>stu.visitor:</message>
@@ -77,8 +77,14 @@
 			<message>test_int_fieldexpression应该在(20,50)之间</message>
 		</field-validator>
 	</field>
-	<validator type="expression" short-circuit="true">
-	   <param name="expression">pass.startsWith("123")</param>
-	   <message>!pass.startsWith("123")</message>
+	<validator type="expression" short-circuit="false">
+		<param name="expression">pass.startsWith("123")</param>
+		<message>!pass.startsWith("123")</message>
 	</validator>
+	<field name="test_regex">
+		<field-validator type="regex">
+			<param name="regex"><![CDATA[\d{10}]]></param>
+			<message>没有以123开头，456结尾</message>
+		</field-validator>
+	</field>
 </validators>

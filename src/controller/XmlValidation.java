@@ -19,6 +19,7 @@ public class XmlValidation extends ActionSupport {
   String repass;
   Stu stu;
   int test_int_fieldexpression;
+  String test_regex;
 
   public Stu getStu() {
     return stu;
@@ -112,6 +113,14 @@ public class XmlValidation extends ActionSupport {
 
   public void setRepass(String repass) {
     this.repass = repass;
+  }
+
+  public String getTest_regex() {
+    return test_regex;
+  }
+
+  public void setTest_regex(String test_regex) {
+    this.test_regex = test_regex;
   }
   
   

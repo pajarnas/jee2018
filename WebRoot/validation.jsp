@@ -20,6 +20,7 @@
    <s:textfield name="pass" label="pass"/>
    <s:textfield name="repass" label="repass"/>   
    <s:textfield name="stu.username" label="username"/> 
+   <s:textfield name="test_regex" label="test_regex(123.*456)"/>
    <s:submit/>
 </s:form>
 

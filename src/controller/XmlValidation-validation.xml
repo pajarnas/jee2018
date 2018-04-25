@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+<!DOCTYPE validators PUBLIC 
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
         "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
 	<field name="test_int">
@@ -84,7 +85,7 @@
 	<field name="test_regex">
 		<field-validator type="regex">
 			<param name="regex"><![CDATA[\d{10}]]></param>
-			<message>没有以123开头，456结尾</message>
+			<message>少或多于10个数字</message>
 		</field-validator>
 	</field>
 </validators>

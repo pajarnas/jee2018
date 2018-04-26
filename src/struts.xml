@@ -6,6 +6,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="global" />
 	<package name="default" extends="struts-default">
+		
 		<action name="checkLogin" class="controller.CheckLogin">
 			<result name="success" type="redirect">/login_s2_suc.jsp</result>
 			<result name="fail" type="dispatcher">/login_s2_fail.jsp</result>
@@ -33,15 +34,18 @@
 			<result name="redirect" type="redirect">/login_i18n_suc.jsp</result>
 		</action>
 		<action name="showLocs" class="controller.ShowLocs">
-		   <result>/loc_list.jsp</result>
-		</action>	
+			<result>/loc_list.jsp</result>
+		</action>
+		<action name="echo2" class="controller.EchoAction">
+			<result>/echo.jsp</result>
+		</action>
 		<action name="*">
-		   <result>/{1}.jsp</result>
-		</action>	
+			<result>/{1}.jsp</result>
+		</action>
 	</package>
-	<include file="ns/ns.xml"/>
-	<include file="interceptor/interceptor.xml"/>
-	<include file="interceptor/sec/sec.xml"/>
-	<include file="ex.xml"/>
-	<include file="validation.xml"/>
+	<include file="ns/ns.xml" />
+	<include file="interceptor/interceptor.xml" />
+	<include file="interceptor/sec/sec.xml" />
+	<include file="ex.xml" />
+	<include file="validation.xml" />
 </struts>

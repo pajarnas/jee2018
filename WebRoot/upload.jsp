@@ -6,6 +6,6 @@
 <s:debug/>
 <s:actionerror/>
 <s:form action="fileUpload" method="post" enctype="multipart/form-data">
-    <s:file name="upload" label="File"/>
+    <s:file name="upload" label="File" accept="image/*"/>
     <s:submit/>
 </s:form>

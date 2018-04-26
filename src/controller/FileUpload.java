@@ -33,16 +33,7 @@ public class FileUpload extends ActionSupport {
   public void setUploadContentType(String uploadContentType) {
     this.uploadContentType = uploadContentType;
   }
-  @Override public void validate(){
-    logger.info(uploadFileName);
-    
-    if(!uploadFileName.endsWith("xml")){
-      addFieldError("upload","只允许上传.xml文件");
-    }
-    if(upload.length()>5*1024){
-      addFieldError("upload","文件太大，之后允许小于等于5K");
-    }
-  }
+  
   @Override public String execute(){    
     String uploadPath=ServletActionContext.getServletContext().getRealPath("/upload");
     File destFile=new File(uploadPath,uploadFileName);

@@ -15,6 +15,7 @@ public class FileUpload extends ActionSupport {
   File upload;
   String uploadFileName;
   String uploadContentType;
+  String downFilePath;
   public File getUpload() {
     return upload;
   }
@@ -34,12 +35,16 @@ public class FileUpload extends ActionSupport {
     this.uploadContentType = uploadContentType;
   }
   
+  public String getDownFilePath() {
+    return downFilePath;
+  }
   @Override public String execute(){    
     String uploadPath=ServletActionContext.getServletContext().getRealPath("/upload");
     File destFile=new File(uploadPath,uploadFileName);
 	System.out.println(destFile);
     try{
       Files.copy(upload.toPath(),destFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+      downFilePath="upload/"+uploadFileName;
     }catch(Exception ex){
 	  ex.printStackTrace();
       return ERROR;

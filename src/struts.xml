@@ -48,4 +48,5 @@
 	<include file="interceptor/sec/sec.xml" />
 	<include file="ex.xml" />
 	<include file="validation.xml" />
+	<include file="file.xml" />
 </struts>

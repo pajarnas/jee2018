@@ -7,6 +7,8 @@
 	<property name="tomcat.home" value="D:/develop/apache-tomcat-9.0.0.M17" />
     	
 	<property file="${lib.home}/build.properties" />
+	<property name="tomcat.url" value="http://localhost:8080"/>
+	<property name="tomcat.manager.url" value="${tomcat.url}/manager/text"/>
 	<property name="deploy.path" value="${tomcat.home}/webapps"/>
 	<!-- jar和war的临时目录 -->
 	<property name="tmp.dir" value="tmp" />
@@ -36,6 +38,7 @@
 		<exclude name="**/*.class" />
 	</patternset>
 	<target name="init" description="Clean output directories">
+	    <delete dir="${deploy.path}" failonerror="true"/>
 		<delete dir="${build.dir}" failonerror="true" />
 		<mkdir dir="${build.dir}" />
 	</target>

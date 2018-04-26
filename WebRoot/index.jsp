@@ -81,5 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr width="30%" align="left" style="border:1px solid red">
     jquery<br>
     <a href="jquery_richtext">jquery文本编辑器</a>
+     <hr width="30%" align="left" style="border:1px solid red">
+    文件上传下载<br>
+    <a href="upload">上传单文件</a><a href="upload_files">上传多文件</a>
   </body>
 </html>

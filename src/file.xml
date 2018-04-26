@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="file" extends="struts-default">		
+		<action name="fileUpload" class="controller.FileUpload">
+		   <result>/upload_res.jsp</result>		   
+		   <result name="error,input">/upload.jsp</result>
+		   <interceptor-ref name="defaultStack">
+		     <param name="fileUpload.maximumSize">10000</param>
+		   </interceptor-ref>
+		</action>
+		<action name="filesUpload" class="controller.FilesUpload">
+		   <result>/upload_files_res.jsp</result>
+		   <result name="error,input">/upload_files.jsp</result>
+		</action>
+	</package>
+</struts>

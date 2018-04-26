@@ -84,6 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <hr width="30%" align="left" style="border:1px solid red">
     文件上传下载<br>
     <a href="upload">上传单文件</a><a href="upload_files">上传多文件</a>
-    <a href="txtStream">txt文件下载</a>
+    <a href="fileFromWeb">文件下载(网站下找)</a>
+    <a href="fileFromCp">文件下载(类路径下找)</a>
   </body>
 </html>

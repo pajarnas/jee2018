@@ -8,7 +8,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class StreamDemo extends ActionSupport {
    public InputStream getTxtStream(){
-     return new ByteArrayInputStream("helloworld".getBytes());
-     //return ServletActionContext.getServletContext().getResourceAsStream("/河南市县名.txt");
+     //return new ByteArrayInputStream("helloworld".getBytes());
+     return ServletActionContext.getServletContext().getResourceAsStream("/ns_suc.jsp");
+   }
+   /**从类路径下找文件*/
+   public InputStream getFileFromCp(){
+     return getClass().getResourceAsStream("/struts.xml");
    }
 }

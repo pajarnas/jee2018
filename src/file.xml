@@ -18,13 +18,15 @@
 		<action name="fileFromWeb" class="controller.StreamDemo">
 		   <result type="stream">
 		        <param name="contentType">text/plain</param> 
-                <param name="inputName">txtStream</param> 
+                <param name="inputName">txtStream</param>
+                <param name="contentDisposition">attachment</param>  
 		   </result>
 		</action>
 		<action name="fileFromCp" class="controller.StreamDemo">
 		   <result type="stream">
 		        <param name="contentType">text/plain</param> 
                 <param name="inputName">fileFromCp</param> 
+                <param name="contentDisposition">attachment;fileName="struts.xml"</param>  
 		   </result>
 		</action>
 	</package>

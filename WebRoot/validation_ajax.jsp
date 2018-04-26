@@ -4,12 +4,13 @@
 <head>
 <s:head/>
 <sj:head/>
+ <script language="javascript" src="${pageContext.request.contextPath}/utils.js" type="text/javascript"></script>
+ <script language="javascript" src="${pageContext.request.contextPath}/struts/xhtml/validation.js" type="text/javascript"></script>
 </head>
 <s:debug/>
 <s:actionerror/>
-
-<s:form name="validationForm" method="post"
-action="xmlValidation" namespace="/validation" validate="true">
+ <div id="result">Submit form bellow.</div>
+<s:form name="validationForm" method="post" action="jsonValidation" namespace="/json" theme="xhtml">
    <s:textfield name="test_int" label="test_int[20,50]" value="23"/>
    <s:textfield name="test_int_fieldexpression" label="test_int_fieldexpression(20,50)"/>
    <s:textfield name="test_double" label="test_double(50,90)" value="56"/>
@@ -23,7 +24,7 @@ action="xmlValidation" namespace="/validation" validate="true">
    <s:textfield name="repass" label="repass"/>   
    <s:textfield name="stu.username" label="username"/> 
    <s:textfield name="test_regex" label="test_regex(10个数字)"/>
-   <s:submit/>
+    <s:submit/>
 </s:form>
 
  date-action:<s:date name="date"/>

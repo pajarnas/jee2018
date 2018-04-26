@@ -9,4 +9,11 @@
 	      <result name="input">/validation.jsp</result>
 	   </action>	  
 	</package>
+	<package name="json" extends="json-default" namespace="/json">
+	   <action name="jsonValidation" class="controller.XmlValidation">
+	      <interceptor-ref name="jsonValidationWorkflowStack"/>
+	      <result>/validation_suc.jsp</result>	     
+	      <result name="input">/validation_ajax.jsp</result>	   
+	   </action>
+	</package>
 </struts>

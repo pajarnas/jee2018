@@ -8,7 +8,7 @@
 		   <result>/upload_res.jsp</result>		   
 		   <result name="error,input">/upload.jsp</result>
 		   <interceptor-ref name="defaultStack">
-		     <param name="fileUpload.maximumSize">10000</param>
+		     <param name="fileUpload.maximumSize">1000000</param>
 		   </interceptor-ref>
 		</action>
 		<action name="filesUpload" class="controller.FilesUpload">
@@ -27,6 +27,13 @@
 		        <param name="contentType">text/plain</param> 
                 <param name="inputName">fileFromCp</param> 
                 <param name="contentDisposition">attachment;fileName="struts.xml"</param>  
+		   </result>
+		</action>
+		<action name="fileDownload" class="controller.FileDownAction">
+		<result type="stream">
+		        <param name="contentType">${contentType}</param> 
+                <param name="inputName">fileStream</param> 
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
 		   </result>
 		</action>
 	</package>

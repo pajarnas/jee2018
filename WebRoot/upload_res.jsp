@@ -7,3 +7,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <s:debug/>
 upload suc
 <a href="<%=basePath%><s:property value='downFilePath'/>">download</a>
+<s:url var="downUrl" action="fileDownload">
+   <s:param name="contentType" value="uploadContentType"/>
+   <s:param name="fileName" value="uploadFileName"/>
+   <s:param name="downFilePath" value="downloadFilePath"/>
+</s:url>

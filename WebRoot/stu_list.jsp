@@ -24,8 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     login_s2_suc <br>
      <s:debug/>
+     <br>
+     <a href="stu_new.jsp">add stu</a>
 <table>
-<tr><td>id<td>username<td>os<td>java<td>math</tr>
+<tr><td>id<td>username<td>os<td>java<td>math<td>action</tr>
 <s:iterator value="stus" var="row" status="status">
   <tr>
   <td><s:property value="#status.even"/>
@@ -35,7 +37,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <td><s:property value="#row[2]"/>
   <td><s:property value="#row[3]"/>
   <td><s:property value="#row[4]"/>
+  <td>
+      <s:url var="editUrl" action="stu_edit">
+          <s:param name="stu.id" value="#row[0]"/>
+      </s:url>
+      <a href="${editUrl}">edit</a>
+      <s:url var="delUrl" action="stu_del">
+          <s:param name="stu.id" value="#row[0]"/>
+      </s:url>
+      <a href="${delUrl}" onclick="return readyDel();">del</a>
 </s:iterator>
 </table>
+<script>
+       function readyDel(){
+          if(confirm("是否删除?")) return true;
+          else return false;
+       }
+    </script>
   </body>
 </html>

@@ -19,10 +19,7 @@
 			method="checkInDb">
 			<result name="success" type="redirect">/login_s2_suc.jsp</result>
 			<result name="fail" type="dispatcher">/login_s2_fail.jsp</result>
-		</action>
-		<action name="stu_list" class="controller.StuAction">
-			<result>/stu_list.jsp</result>
-		</action>
+		</action>		
 		<action name="checkLoginByObj" class="controller.CheckLoginByObj">
 			<result>/login_obj_suc.jsp</result>
 			<result name="input">/login_obj.jsp</result>
@@ -49,4 +46,5 @@
 	<include file="ex.xml" />
 	<include file="validation.xml" />
 	<include file="file.xml" />
+	<include file="jdbc.xml" />
 </struts>
